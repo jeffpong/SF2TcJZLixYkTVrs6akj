@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">CurrencyApplication</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cryptocurrency">CryptoCurrency</string>
+    <string name="reload">Reload</string>
+</resources>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.currencyapplication.viewmodel.CurrencyListViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".DemoActivity">
+
+        <TextView
+            android:id="@+id/header_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/header_background"
+            android:padding="@dimen/x1"
+            android:text="@string/cryptocurrency"
+            android:textAllCaps="true"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment_container_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_below="@id/header_title"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_title"
+
+            />
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/x2"
+            android:backgroundTint="@color/secondary"
+            android:visibility="@{ viewModel.currencies.size() &gt; 0 ? View.VISIBLE: View.INVISIBLE }"
+            android:src="@{ viewModel.sorting &lt; 0 ? @drawable/ic_descending : @drawable/ic_ascending }"
+            tools:src="@drawable/ic_ascending"
+            android:tint="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/reload_fab"
+            app:layout_constraintRight_toRightOf="parent"
+            android:onClick="@{() -> viewModel.sort()}"
+            />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/reload_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/x4"
+            android:layout_marginRight="@dimen/x2"
+            android:backgroundTint="@color/accent"
+            android:src="@drawable/ic_reload"
+            android:tint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:onClick="@{()->viewModel.load()}"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
