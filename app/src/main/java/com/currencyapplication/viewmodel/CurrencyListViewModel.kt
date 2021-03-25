@@ -70,8 +70,8 @@ class CurrencyListViewModel(
     fun setClickedCurrency(newCurrencyInfo: CurrencyInfo) {
         _currency.postValue(newCurrencyInfo)
     }
-    fun resetClickedCurrency() {
-
+    private fun resetClickedCurrency() {
+        _currency.postValue(null)
     }
 
 
